@@ -7,7 +7,7 @@ module driver #(parameter WIDTH = 8) (
         if (data_en) begin
             data_out = data_in;
         end else begin
-            data_out = {WIDTH{1'b0}};
+            data_out = {WIDTH{1'bz}};
         end
     end
 endmodule

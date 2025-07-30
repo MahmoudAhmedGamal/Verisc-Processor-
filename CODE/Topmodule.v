@@ -12,7 +12,7 @@ module VERI_RISC (
     wire data_e;
     wire ld_ac;
     wire [WIDTH-1:0] ac_out;
-    wire [WIDTH-1:0] ir_reg;
+    wire [WIDTH-1:0] ir_out;
     wire ld_ir;
     wire [AWIDTH-1:0] ir_addr;
     wire rd,wr,ld_pc,inc_pc,sel;
@@ -20,8 +20,8 @@ module VERI_RISC (
     wire [AWIDTH-1:0] pc_addr;
     wire [2:0] phase;
 
-    assign opcode = ir_reg [WIDTH-1 : WIDTH-3];
-    assign ir_addr = ir_reg [WIDTH-4 : 0];
+    assign opcode = ir_out [WIDTH-1 : WIDTH-3];
+    assign ir_addr = ir_out [WIDTH-4 : 0];
 
     driver #(.WIDTH(WIDTH)) driver_inst (
         .data_in(alu_out),
@@ -40,7 +40,7 @@ module VERI_RISC (
         .rst(rst),
         .load(ld_ir),
         .data_in(data),
-        .data_out(ir_reg)
+        .data_out(ir_out)
     );
     alu #(.WIDTH(WIDTH)) alu_inst (
         .in_a(ac_out),
